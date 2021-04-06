@@ -10,3 +10,17 @@ before-install:
 
 script:
   - docker run -e CI=true subhajitchakraborty/docker-nodeapp npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-nodeapp"
+  env: "Dockernodeapp-env"
+  bucket_name: "elasticbeanstalk-us-east-1-013955861504"
+  bucket_path: "docker-nodeapp"
+
+  on:
+    branch: master
+    
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
