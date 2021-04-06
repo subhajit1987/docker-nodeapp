@@ -1,0 +1,12 @@
+sudo: required
+
+language: generic
+
+services:
+  - docker
+
+before-install:
+  - docker build -t subhajitchakraborty/docker-nodeapp -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true subhajitchakraborty/docker-nodeapp npm run test
